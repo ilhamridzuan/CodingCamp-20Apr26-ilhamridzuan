@@ -1,0 +1,1208 @@
+/* To-Do List Life Dashboard Styles */
+
+/* ===========================
+   CSS Reset & Box Sizing
+   =========================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ===========================
+   Color Scheme & Typography
+   =========================== */
+
+:root {
+  /* Neo-Brutalism Color Palette */
+  --color-primary: #00D9FF;
+  --color-primary-dark: #00B8D4;
+  --color-secondary: #FFE500;
+  --color-danger: #FF006E;
+  --color-warning: #FF9500;
+  --color-success: #00FF94;
+  
+  --color-bg: #FFFFFF;
+  --color-surface: #FFFFFF;
+  --color-border: #000000;
+  
+  --color-text-primary: #000000;
+  --color-text-secondary: #000000;
+  --color-text-muted: #666666;
+  
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-size-base: 16px;
+  --font-size-small: 14px;
+  --font-size-large: 18px;
+  --font-size-xlarge: 24px;
+  --font-size-xxlarge: 32px;
+  
+  --font-weight-normal: 400;
+  --font-weight-medium: 600;
+  --font-weight-bold: 800;
+  
+  --line-height-base: 1.5;
+  --line-height-tight: 1.2;
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* Border Radius - Neo-Brutalism uses minimal or no radius */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  
+  /* Shadows - Neo-Brutalism uses hard offset shadows */
+  --shadow-sm: 4px 4px 0px #000000;
+  --shadow-md: 6px 6px 0px #000000;
+  --shadow-lg: 8px 8px 0px #000000;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+}
+
+/* ===========================
+   Dark Theme Variables
+   =========================== */
+
+[data-theme="dark"] {
+  /* Dark Mode Color Palette */
+  --color-primary: #00D9FF;
+  --color-primary-dark: #00B8D4;
+  --color-secondary: #FFE500;
+  --color-danger: #FF006E;
+  --color-warning: #FF9500;
+  --color-success: #00FF94;
+  
+  /* Dark backgrounds and surfaces */
+  --color-bg: #1A1A1A;
+  --color-surface: #2A2A2A;
+  --color-border: #FFFFFF;
+  
+  /* Dark mode text colors - WCAG AA compliant */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #E0E0E0;
+  --color-text-muted: #999999;
+  
+  /* Dark mode shadows use white borders */
+  --shadow-sm: 4px 4px 0px #FFFFFF;
+  --shadow-md: 6px 6px 0px #FFFFFF;
+  --shadow-lg: 8px 8px 0px #FFFFFF;
+}
+
+/* ===========================
+   Body & Main Container
+   =========================== */
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+  min-height: 100vh;
+}
+
+/* Mobile-first: Single column layout */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* Desktop: Multi-column layout at 768px breakpoint */
+@media (min-width: 768px) {
+  .dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+    padding: var(--spacing-xl);
+  }
+}
+
+/* ===========================
+   Utility Classes - Buttons
+   =========================== */
+
+.btn {
+  display: inline-block;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  text-align: center;
+  text-decoration: none;
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+  min-height: 44px;
+  min-width: 44px;
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.btn:active:not(:disabled) {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+.btn:focus {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Button Variants */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-text-primary);
+}
+
+.btn-danger {
+  background-color: var(--color-danger);
+  color: #FFFFFF;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 3px solid var(--color-primary);
+}
+
+.btn-outline:hover:not(:disabled) {
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+}
+
+/* Button Sizes */
+.btn-sm {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-small);
+}
+
+.btn-lg {
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-large);
+}
+
+/* ===========================
+   Utility Classes - Inputs
+   =========================== */
+
+.input {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast);
+  min-height: 44px;
+  box-shadow: var(--shadow-sm);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 4px 4px 0px var(--color-primary);
+}
+
+.input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.input:disabled {
+  background-color: #F0F0F0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Input Variants */
+.input-error {
+  border-color: var(--color-danger);
+}
+
+.input-error:focus {
+  border-color: var(--color-danger);
+  box-shadow: 4px 4px 0px var(--color-danger);
+}
+
+/* Input Sizes */
+.input-sm {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-small);
+}
+
+.input-lg {
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-large);
+}
+
+/* ===========================
+   Component Styles
+   =========================== */
+
+/* ===========================
+   Storage Warning Banner
+   =========================== */
+
+.storage-warning-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-md);
+  background-color: var(--color-warning);
+  color: var(--color-text-primary);
+  text-align: center;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  border-bottom: 4px solid var(--color-border);
+  z-index: 1000;
+  animation: slideDown 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Adjust dashboard container when banner is visible */
+body:has(.storage-warning-banner[style*="display: block"]) .dashboard-container {
+  margin-top: var(--spacing-xl);
+}
+
+/* ===========================
+   Greeting Component
+   =========================== */
+
+.greeting-component {
+  background-color: var(--color-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  border: 4px solid var(--color-border);
+}
+
+.greeting-component .time {
+  font-size: var(--font-size-xxlarge);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--spacing-sm);
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+.greeting-component .date {
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+  font-weight: var(--font-weight-medium);
+}
+
+.greeting-component .greeting {
+  font-size: var(--font-size-xlarge);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===========================
+   Timer Component
+   =========================== */
+
+.timer-component {
+  background-color: var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  border: 4px solid var(--color-border);
+}
+
+.timer-display {
+  font-size: 48px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--spacing-lg);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.timer-controls {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.timer-controls .btn-start,
+.timer-controls .btn-stop,
+.timer-controls .btn-reset {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 44px;
+  min-width: 44px;
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.timer-controls .btn-start {
+  background-color: var(--color-success);
+  color: var(--color-text-primary);
+}
+
+.timer-controls .btn-start:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.timer-controls .btn-start:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+.timer-controls .btn-stop {
+  background-color: var(--color-warning);
+  color: var(--color-text-primary);
+}
+
+.timer-controls .btn-stop:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.timer-controls .btn-stop:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+.timer-controls .btn-reset {
+  background-color: #FFFFFF;
+  color: var(--color-text-primary);
+}
+
+.timer-controls .btn-reset:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.timer-controls .btn-reset:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+.timer-notification {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background-color: var(--color-success);
+  color: var(--color-text-primary);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-bold);
+  border: 3px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===========================
+   Task List Component
+   =========================== */
+
+.task-list-component {
+  background-color: #FFB3E6;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-lg);
+  border: 4px solid var(--color-border);
+}
+
+.task-input-container {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.task-input {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  min-height: 44px;
+  box-shadow: var(--shadow-sm);
+  background-color: var(--color-surface);
+}
+
+.task-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 4px 4px 0px var(--color-primary);
+}
+
+.task-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.task-error-message {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-small);
+  margin-top: calc(var(--spacing-sm) * -1);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--color-danger);
+  border-radius: var(--radius-sm);
+  border: 3px solid var(--color-border);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-add-task {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: var(--color-success);
+  color: var(--color-text-primary);
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 44px;
+  min-width: 44px;
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-add-task:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.btn-add-task:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border: 3px solid var(--color-border);
+  margin-bottom: var(--spacing-sm);
+  transition: all var(--transition-fast);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.task-item:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000000;
+}
+
+.task-item:last-child {
+  margin-bottom: 0;
+}
+
+.task-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  flex-shrink: 0;
+  min-width: 44px;
+  min-height: 44px;
+  accent-color: var(--color-success);
+}
+
+.task-text {
+  flex: 1;
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  word-break: break-word;
+  font-weight: var(--font-weight-medium);
+}
+
+.task-item.completed {
+  background-color: #F0F0F0;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  opacity: 0.6;
+  color: var(--color-text-secondary);
+}
+
+.btn-edit,
+.btn-delete {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+  min-height: 44px;
+  min-width: 44px;
+  box-shadow: 3px 3px 0px #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-edit {
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+}
+
+.btn-edit:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.btn-edit:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+.btn-delete {
+  background-color: var(--color-danger);
+  color: #FFFFFF;
+}
+
+.btn-delete:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.btn-delete:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+/* ===========================
+   Quick Links Component
+   =========================== */
+
+.quick-links-component {
+  background-color: #B4FF9F;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-lg);
+  border: 4px solid var(--color-border);
+}
+
+.link-input-container {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.link-name-input,
+.link-url-input {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  min-height: 44px;
+  box-shadow: var(--shadow-sm);
+  background-color: var(--color-surface);
+}
+
+.link-name-input {
+  flex: 1;
+  min-width: 120px;
+}
+
+.link-url-input {
+  flex: 2;
+  min-width: 200px;
+}
+
+.link-name-input:focus,
+.link-url-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 4px 4px 0px var(--color-primary);
+}
+
+.link-name-input::placeholder,
+.link-url-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.link-error-message {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-small);
+  margin-top: calc(var(--spacing-sm) * -1);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--color-danger);
+  border-radius: var(--radius-sm);
+  border: 3px solid var(--color-border);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-add-link {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 44px;
+  min-width: 44px;
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-add-link:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.btn-add-link:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+.links-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.quick-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-secondary);
+  color: var(--color-text-primary);
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 44px;
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.quick-link-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.quick-link-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+.btn-delete-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-danger);
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+  transition: all var(--transition-fast);
+  min-width: 24px;
+  min-height: 24px;
+  border: 2px solid var(--color-border);
+  color: #FFFFFF;
+  font-weight: var(--font-weight-bold);
+}
+
+.btn-delete-link:hover {
+  transform: scale(1.1);
+  background-color: #FF0055;
+}
+
+/* ===========================
+   Settings Component
+   =========================== */
+
+.settings-component {
+  background-color: #FFB3E6; /* Pink background like task list */
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-lg);
+  border: 4px solid var(--color-border);
+}
+
+.settings-title {
+  font-size: var(--font-size-xlarge);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-lg);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.settings-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.settings-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.settings-label {
+  display: block;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.settings-input {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast);
+  min-height: 44px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.settings-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 4px 4px 0px var(--color-primary);
+}
+
+.settings-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.settings-hint {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+}
+
+.name-error-message,
+.duration-error-message {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-small);
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--color-danger);
+  border-radius: var(--radius-sm);
+  border: 3px solid var(--color-border);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.settings-success-message {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background-color: var(--color-success);
+  border-radius: var(--radius-md);
+  border: 3px solid var(--color-border);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Theme Switcher */
+.theme-switcher {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.theme-btn {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  text-align: center;
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 44px;
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+}
+
+.theme-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--color-border);
+}
+
+.theme-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+.theme-btn.active {
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.theme-btn.active:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px var(--color-border);
+}
+
+.theme-indicator {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.current-theme {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+/* Save Buttons */
+.btn-save-name,
+.btn-save-duration {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 44px;
+  min-width: 44px;
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.btn-save-name:hover,
+.btn-save-duration:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--color-border);
+}
+
+.btn-save-name:active,
+.btn-save-duration:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+/* ===========================
+   Responsive Layout Enhancements
+   =========================== */
+
+/* Ensure text readability at all viewport sizes */
+@media (max-width: 767px) {
+  /* Mobile: Optimize for smaller screens */
+  .greeting-component .time {
+    font-size: 28px; /* Slightly smaller on mobile */
+  }
+  
+  .timer-display {
+    font-size: 40px; /* Slightly smaller on mobile */
+  }
+  
+  /* Stack timer controls vertically on very small screens */
+  @media (max-width: 400px) {
+    .timer-controls {
+      flex-direction: column;
+      width: 100%;
+    }
+    
+    .timer-controls button {
+      width: 100%;
+    }
+  }
+  
+  /* Ensure link inputs stack properly on mobile */
+  .link-input-container {
+    flex-direction: column;
+  }
+  
+  .link-name-input,
+  .link-url-input {
+    width: 100%;
+    min-width: 100%;
+  }
+}
+
+/* Desktop: Optimize for larger screens */
+@media (min-width: 768px) {
+  /* Greeting component spans full width on desktop */
+  .greeting-component {
+    grid-column: 1 / -1;
+  }
+  
+  /* Task list component spans full width on desktop */
+  .task-list-component {
+    grid-column: 1 / -1;
+  }
+  
+  /* Improve text readability with better line height */
+  .task-text {
+    line-height: 1.6;
+  }
+}
+
+/* Large desktop: Further optimize spacing */
+@media (min-width: 1024px) {
+  .dashboard-container {
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+  
+  .greeting-component .time {
+    font-size: var(--font-size-xxlarge);
+  }
+  
+  .timer-display {
+    font-size: 56px;
+  }
+}
+
+/* ===========================
+   Dark Theme Component Overrides
+   =========================== */
+
+/* Greeting Component - Dark Theme */
+[data-theme="dark"] .greeting-component {
+  background-color: #3A3A00; /* Darker yellow for dark mode */
+}
+
+/* Timer Component - Dark Theme */
+[data-theme="dark"] .timer-component {
+  background-color: #003A44; /* Darker cyan for dark mode */
+}
+
+/* Task List Component - Dark Theme */
+[data-theme="dark"] .task-list-component {
+  background-color: #4A2A4A; /* Darker pink for dark mode */
+}
+
+/* Quick Links Component - Dark Theme */
+[data-theme="dark"] .quick-links-component {
+  background-color: #2A4A2A; /* Darker green for dark mode */
+}
+
+/* Task Items and Inputs - Dark Theme */
+[data-theme="dark"] .task-item {
+  background-color: #3A3A3A;
+}
+
+[data-theme="dark"] .task-item.completed {
+  background-color: #2A2A2A;
+}
+
+[data-theme="dark"] .input,
+[data-theme="dark"] .task-input,
+[data-theme="dark"] .link-name-input,
+[data-theme="dark"] .link-url-input {
+  background-color: #3A3A3A;
+  color: var(--color-text-primary);
+}
+
+[data-theme="dark"] .input:disabled {
+  background-color: #2A2A2A;
+}
+
+/* Button Overrides - Dark Theme */
+[data-theme="dark"] .btn:hover:not(:disabled) {
+  box-shadow: 2px 2px 0px #FFFFFF;
+}
+
+[data-theme="dark"] .timer-controls .btn-start:hover,
+[data-theme="dark"] .timer-controls .btn-stop:hover,
+[data-theme="dark"] .timer-controls .btn-reset:hover,
+[data-theme="dark"] .btn-add-task:hover,
+[data-theme="dark"] .btn-add-link:hover,
+[data-theme="dark"] .quick-link-btn:hover {
+  box-shadow: 2px 2px 0px #FFFFFF;
+}
+
+[data-theme="dark"] .btn-edit:hover,
+[data-theme="dark"] .btn-delete:hover {
+  box-shadow: 2px 2px 0px #FFFFFF;
+}
+
+[data-theme="dark"] .task-item:hover {
+  box-shadow: 6px 6px 0px #FFFFFF;
+}
+
+/* Timer Reset Button - Dark Theme */
+[data-theme="dark"] .timer-controls .btn-reset {
+  background-color: #2A2A2A;
+  color: var(--color-text-primary);
+}
+
+/* Storage Warning Banner - Dark Theme */
+[data-theme="dark"] .storage-warning-banner {
+  background-color: var(--color-warning);
+  color: #000000; /* Keep text dark on warning yellow for contrast */
+}
+
+/* Error Messages - Dark Theme */
+[data-theme="dark"] .task-error-message,
+[data-theme="dark"] .link-error-message {
+  background-color: var(--color-danger);
+  color: #FFFFFF;
+}
+
+/* Timer Notification - Dark Theme */
+[data-theme="dark"] .timer-notification {
+  background-color: var(--color-success);
+  color: #000000; /* Keep text dark on success green for contrast */
+}
+
+/* Quick Link Delete Button - Dark Theme */
+[data-theme="dark"] .btn-delete-link {
+  border-color: #FFFFFF;
+}
+
+/* Settings Component - Dark Theme */
+[data-theme="dark"] .settings-component {
+  background-color: #4A2A4A; /* Darker pink for dark mode */
+}
+
+[data-theme="dark"] .settings-input {
+  background-color: #3A3A3A;
+  color: var(--color-text-primary);
+}
+
+[data-theme="dark"] .theme-btn {
+  background-color: #3A3A3A;
+  color: var(--color-text-primary);
+}
+
+[data-theme="dark"] .theme-btn:hover {
+  box-shadow: 2px 2px 0px #FFFFFF;
+}
+
+[data-theme="dark"] .theme-btn.active {
+  background-color: var(--color-primary);
+}
+
+[data-theme="dark"] .theme-btn.active:hover {
+  box-shadow: 4px 4px 0px #FFFFFF;
+}
+
+[data-theme="dark"] .btn-save-name:hover,
+[data-theme="dark"] .btn-save-duration:hover {
+  box-shadow: 2px 2px 0px #FFFFFF;
+}
+
+[data-theme="dark"] .name-error-message,
+[data-theme="dark"] .duration-error-message {
+  background-color: var(--color-danger);
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .settings-success-message {
+  background-color: var(--color-success);
+  color: #000000; /* Keep text dark on success green for contrast */
+}
