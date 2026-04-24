@@ -163,7 +163,6 @@ body {
   min-height: 44px;
   min-width: 44px;
   box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(10px);
 }
 
 .btn:hover:not(:disabled) {
@@ -333,7 +332,6 @@ body:has(.storage-warning-banner[style*="display: block"]) .dashboard-container 
   box-shadow: var(--shadow-lg);
   text-align: center;
   border: 2px solid var(--color-border);
-  backdrop-filter: blur(20px);
 }
 
 .greeting-component .time {
@@ -369,7 +367,6 @@ body:has(.storage-warning-banner[style*="display: block"]) .dashboard-container 
   box-shadow: var(--shadow-lg);
   text-align: center;
   border: 2px solid var(--color-border);
-  backdrop-filter: blur(20px);
 }
 
 .timer-display {
@@ -402,7 +399,6 @@ body:has(.storage-warning-banner[style*="display: block"]) .dashboard-container 
   min-height: 44px;
   min-width: 44px;
   box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(10px);
 }
 
 .timer-controls .btn-start {
@@ -472,7 +468,6 @@ body:has(.storage-warning-banner[style*="display: block"]) .dashboard-container 
   padding: var(--spacing-xl);
   box-shadow: var(--shadow-lg);
   border: 2px solid var(--color-border);
-  backdrop-filter: blur(20px);
 }
 
 .task-input-container {
@@ -529,7 +524,6 @@ body:has(.storage-warning-banner[style*="display: block"]) .dashboard-container 
   min-height: 44px;
   min-width: 44px;
   box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(10px);
 }
 
 .btn-add-task:hover {
@@ -559,7 +553,6 @@ body:has(.storage-warning-banner[style*="display: block"]) .dashboard-container 
   background-color: var(--color-surface);
   box-shadow: var(--shadow-sm);
   border-radius: var(--radius-md);
-  backdrop-filter: blur(10px);
 }
 
 .task-item:hover {
@@ -612,7 +605,6 @@ body:has(.storage-warning-banner[style*="display: block"]) .dashboard-container 
   min-height: 44px;
   min-width: 44px;
   box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(10px);
 }
 
 .btn-edit {
@@ -655,7 +647,6 @@ body:has(.storage-warning-banner[style*="display: block"]) .dashboard-container 
   padding: var(--spacing-xl);
   box-shadow: var(--shadow-lg);
   border: 2px solid var(--color-border);
-  backdrop-filter: blur(20px);
 }
 
 .link-input-container {
@@ -725,7 +716,6 @@ body:has(.storage-warning-banner[style*="display: block"]) .dashboard-container 
   min-height: 44px;
   min-width: 44px;
   box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(10px);
 }
 
 .btn-add-link:hover {
@@ -759,7 +749,6 @@ body:has(.storage-warning-banner[style*="display: block"]) .dashboard-container 
   transition: all var(--transition-base);
   min-height: 44px;
   box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(10px);
 }
 
 .quick-link-btn:hover {
@@ -805,7 +794,6 @@ body:has(.storage-warning-banner[style*="display: block"]) .dashboard-container 
   padding: var(--spacing-xl);
   box-shadow: var(--shadow-lg);
   border: 2px solid var(--color-border);
-  backdrop-filter: blur(20px);
 }
 
 .settings-title {
@@ -912,7 +900,6 @@ body:has(.storage-warning-banner[style*="display: block"]) .dashboard-container 
   box-shadow: var(--shadow-sm);
   background-color: var(--color-surface);
   color: var(--color-text-primary);
-  backdrop-filter: blur(10px);
 }
 
 .theme-btn:hover {
@@ -963,7 +950,6 @@ body:has(.storage-warning-banner[style*="display: block"]) .dashboard-container 
   min-width: 44px;
   box-shadow: var(--shadow-sm);
   margin-bottom: var(--spacing-sm);
-  backdrop-filter: blur(10px);
 }
 
 .btn-save-name:hover,
